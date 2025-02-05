@@ -2,6 +2,7 @@ from reportlab.lib.pagesizes import A4, landscape  # type: ignore
 from reportlab.lib import colors  # type: ignore
 from reportlab.pdfgen import canvas  # type: ignore
 from datetime import datetime, timedelta
+import json
 
 
 def get_date_from_week(reference_date, week_number, day_of_week):
@@ -152,13 +153,16 @@ def draw_day(c, area, date, ref_date):
     draw_cross(c, area_cross, spacing, cross_size)
 
 
-def draw_page(c, ref_date):
+def draw_page(c, ref_date, nb_weeks):
     # Set page size to landscape A4
     width, height = landscape(A4)
     front = True
-    week_end = 52
+    if nb_weeks % 2 != 0:  # Check if the number is odd
+        nb_weeks += 1
+
+    week_end = nb_weeks
     week_start = 1
-    for page_nb in range(26):
+    for page_nb in range(int(nb_weeks/2)):
         ##############
         #            #
         #  mid line  #
@@ -215,12 +219,17 @@ def draw_page(c, ref_date):
         c.showPage()
 
 
-def generate_pdf(filename):
+def generate_pdf(filename, start_date, nb_weeks):
     c = canvas.Canvas(filename, pagesize=landscape(A4))
-    ref_date = "10.02.2025"
-    draw_page(c, ref_date)
+    draw_page(c, start_date, nb_weeks)
     c.save()
 
 
 if __name__ == "__main__":
-    generate_pdf("foldable_daybook.pdf")
+    config_file_path = 'data/inputs/config.json'
+    output_file_path = 'data/output/foldable_daybook.pdf'
+    with open(config_file_path, 'r') as json_file:
+        config = json.load(json_file)
+    start_date = config["start_date"]
+    nb_weeks = config["nb_weeks"]
+    generate_pdf(output_file_path, start_date, nb_weeks)
