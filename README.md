@@ -13,21 +13,28 @@ This Python tool creates a printable PDF calendar that you can fold into a compa
 - Printer (yes, the one collecting dust in the corner)
 - Basic folding skills (origami masters welcome!)
 
-### Installation
-```bash
-# Pull the Docker image
-docker pull your-username/foldable-daybook
+### 1. Docker Setup
+* Navigate to the `dockerfile` folder and build the Docker image:
 
-# Run the container
-docker run -v $(pwd)/output:/app/output your-username/foldable-daybook
+```bash
+docker build -t foldable-daybook .
 ```
 
-### Usage
-1. Run the container
-2. Find your fresh calendar in the output folder
-3. Print it
-4. Follow the folding guidelines
-5. Place it under your laptop and start planning!
+### 2. Generate Calendar
+* Run the calendar generator:
+⚠️ **Note:** Update file paths to match your local **foldable-daybook** folder.
+
+```bash
+docker run --rm \
+  -v /path/to/foldable-daybook/output:/app/output \
+  foldable-daybook bash make_calendar.sh
+```
+
+### 3. Print and Fold
+* Navigate to the output folder
+* Print the generated PDF file
+* Follow the folding guidelines in the included instructions
+* Place under your laptop and start planning!
 
 ## 🎨 Features
 
@@ -38,13 +45,6 @@ docker run -v $(pwd)/output:/app/output your-username/foldable-daybook
 - Space for daily notes
 - No batteries required! 🔋
 
-## 🛠️ Technical Details
-
-Built with:
-- Python
-- Docker
-- ReportLab for PDF generation
-- Love for analog solutions in a digital world ❤️
 
 ## 🙏 Acknowledgments
 
@@ -53,7 +53,3 @@ This project is inspired by the [Cortex Brand Sidekick Calendar Companion](https
 ## 📝 Contributing
 
 Got ideas for making this even better? PRs are welcome! Whether it's adding new features, improving the design, or fixing my terrible folding instructions.
-
-## 📄 License
-
-MIT - Feel free to fold this project into your own work!
