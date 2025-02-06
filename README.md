@@ -34,7 +34,7 @@ docker run --rm \
 ### 3. Print and Fold
 * Navigate to the output folder
 * Print the generated PDF file
-* Follow the folding guidelines in the included instructions
+* Follow the folding guidelines.
 * Place under your laptop and start planning!
 
 ![Folding Instructions](./doc/fold.png)
