@@ -246,8 +246,8 @@ def draw_page(c, ref_date, nb_weeks):
     # Set page size to landscape A4
     width, height = landscape(A4)
     front = True
-    if nb_weeks % 2 != 0:  # Check if the number is odd
-        nb_weeks += 1
+    if nb_weeks % 4 != 0:  # Check if the number is not a multiple of 4
+        nb_weeks += 4 - (nb_weeks % 4)
     week_end = nb_weeks
     week_start = 1
     for page_nb in range(int(nb_weeks/2)):
@@ -286,6 +286,17 @@ def draw_page(c, ref_date, nb_weeks):
                 draw_day(c, area, date, ref_date)
             front = False
         else:
+            # Save the canvas state
+            c.saveState()
+
+            # Translate to the center of the page
+            c.translate(width / 2, height / 2)
+
+            # Rotate the canvas by 180 degrees clockwise
+            c.rotate(180)
+
+            # Translate back to the original coordinate system
+            c.translate(-width / 2, -height / 2)
             # top
             for i in range(5):
                 area = {"top_left": (i*width/5, height),
@@ -299,6 +310,8 @@ def draw_page(c, ref_date, nb_weeks):
                 date = (week_end, i+1)
                 draw_day(c, area, date, ref_date)
             front = True
+            # Restore the canvas state
+            c.restoreState()
 
         week_start += 1
         week_end -= 1

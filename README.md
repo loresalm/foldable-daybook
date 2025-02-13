@@ -1,3 +1,5 @@
+![Example](./doc/ex.png)
+
 # 📅 Foldable Daybook
 
 Generate your own foldable calendar that sits perfectly between you and your laptop! Perfect for the analog note-taker in a digital world.
@@ -46,8 +48,8 @@ docker run --rm \
 
 ```json
 {
-    "start_date": "10.02.2025",
-    "nb_weeks": 52
+    "start_date": "17.02.2025",
+    "nb_weeks": 12
 }
 ```
 
@@ -56,8 +58,8 @@ docker run --rm \
   - ⚠️ If you input any other day, weeks will run for 5 days from that day
   - Example: Starting on Wednesday = Wednesday to Sunday weeks
 - `nb_weeks`: Number of weeks to generate
-  - ⚠️ If you input an odd number, an extra week will be added
-  - Two weeks are printed per page, so we keep it even!
+  - ⚠️ If you input not a multiple of 4, extra weeks will be added
+  - Two weeks are printed per page, which is 4 per sheet.
 
 ## 🎨 Features
 
