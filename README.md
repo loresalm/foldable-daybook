@@ -8,6 +8,8 @@ Generate your own foldable calendar that sits perfectly between you and your lap
 
 This Python tool creates a printable PDF calendar that you can fold into a compact, portable planner. Keep track of meetings, deadlines, and random thoughts without switching screens or hunting for your phone. The clever folding design shows one week at a time, helping you stay focused on current tasks without getting overwhelmed by the entire month.
 
+![Example](./doc/page.png)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
