@@ -1,4 +1,4 @@
-![Example](./doc/ex.png)
+![Example](./doc/ex.jpg)
 
 # 📅 Foldable Daybook
 
